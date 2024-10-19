@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        /* Pengaturan body */
+        body {
+            background-color: #DFD0B8;
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header judul */
+        h1 {
+            color: #3C5B6F;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #3C5B6F;
+        }
+
+        p, strong {
+            color: #3C5B6F;
+        }
+
+        /* Container form login */
+        .login-container {
+            background-color: #cfb58e;
+            color: #153448;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 500px;
+            margin: auto;
+        }
+
+        /* Pengaturan input */
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #bdb4b4;
+            border-radius: 4px;
+        }
+
+        /* Tombol */
+        .login-container input[type="submit"],
+        .login-container input[type="reset"],
+        .login-container .register-btn {
+            width: 30%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Warna tombol */
+        .login-container input[type="submit"] { background-color: #4CAF50; }
+        .login-container input[type="reset"] { background-color: #f44336; }
+        .login-container .register-btn {
+            background-color: #4CAF50;
+            text-decoration: none;
+            font-size: small;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .login-container .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Tutorial box di bagian bawah */
+        .bottom-container {
+            margin-top: auto;
+            background-color: #DFD0B8;
+            padding: 20px;
+        }
+
+        /* Layout tutorial box dalam dua kolom */
+        .tutorial-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-content: space-between;
+            transition: all 0.3s ease-in-out;
+
+        }
+
+        .bottom-container h3 {
+            text-align: center;
+            color: #3C5B6F;
+            margin-bottom: 20px;
+        
+        }
+
+        /* Tampilan setiap box tutorial */
+        .tutorial-box {
+            background-color: #cfb58e;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.3s ease-in-out;
+
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animasi saat mouse hover pada box */
+        .tutorial-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsif: jadi satu kolom di layar kecil */
+        @media (max-width: 768px) {
+            .tutorial-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="title">Tutorial Membuat Form Login HTML</h1>
+
+    <!-- Form Login -->
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="button-group">
+                <input type="submit" value="Login">
+                <input type="reset" value="Reset">
+                <a href="register.html" class="register-btn">Register</a>
+            </div>
+        </form>
+    </div>
+
+    <br>
+
+    <!-- Container Tutorial di Bagian Bawah -->
+    <div class="bottom-container">
+        <h3>Langkah-Langkah Membuat Form Login HTML dan Penjelasannya</h3>
+
+        <div class="tutorial-container">
+            <div class="tutorial-box">
+                <p><strong>&lt;form&gt;</strong> - Digunakan untuk mendefinisikan form HTML. Semua input berada di dalam elemen ini.</p>
+            </div>
+            <div class="tutorial-box">
+                <p><strong>&lt;label&gt;</strong> - Elemen untuk mendefinisikan label bagi input, membantu pengguna mengerti input yang diperlukan.</p>
+            </div>
+            <div class="tutorial-box">
+                <p><strong>&lt;input type="text"&gt;</strong> - Digunakan untuk menerima teks dari pengguna (misalnya, nama pengguna).</p>
+            </div>
+            <div class="tutorial-box">
+                <p><strong>&lt;input type="password"&gt;</strong> - Input untuk menerima kata sandi, teks yang dimasukkan akan tersembunyi.</p>
+            </div>
+            <div class="tutorial-box">
+                <p><strong>&lt;input type="submit"&gt;</strong> - Tombol untuk mengirim form yang telah diisi oleh pengguna.</p>
+            </div>
+            <div class="tutorial-box">
+                <p><strong>&lt;input type="reset"&gt;</strong> - Tombol untuk mengatur ulang atau mereset semua input di dalam form.</p>
+            </div>
+            <div class="tutorial-box">
+                <p><strong>&lt;input type="button"&gt;</strong> - Tombol yang dapat melakukan tindakan lain, misalnya mengarahkan ke halaman register.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menggunakan Intersection Observer API untuk animasi scroll
+        const boxes = document.querySelectorAll('.tutorial-box');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Pantau setiap tutorial-box
+        boxes.forEach(box => observer.observe(box));
+    </script>
+
+</body>
+</html>

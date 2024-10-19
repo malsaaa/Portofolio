@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Membuat Tabel</title>
+    <style>
+        
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+        
+        body {
+            background-color: #DFD0B8;
+            font-family: "Poppins", sans-serif;
+        }
+
+        h2 {
+            color: #3C5B6F;
+            text-align: center;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(-50px); /* Awal animasi di luar layar (atas) */
+            transition: all 1s ease-out;
+        }
+
+        p, strong {
+            color: #3C5B6F;
+        }
+
+        /* Animasi muncul dari bawah */
+       .animate {
+            opacity: 0;
+            transform: translateY(20px); /* Jarak animasi muncul dari bawah */
+            transition: all 1s ease-out;
+        }
+
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0); /* Kembali ke posisi semula */
+        }
+
+        /* Container untuk keseluruhan langkah */
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .container h3 {
+            text-align: center;
+            color: #3C5B6F;
+            margin-bottom: 20px;
+        
+        }
+
+        .bottom-container h3{
+            text-align: center;
+            color: #3C5B6F;
+            margin-bottom: 20px;
+        }
+
+        /* Kotak tiap langkah */
+        .step-box {
+            background-color: #cfb58e;
+            border-radius: 8px;
+            padding: 10px;
+            width: 46%;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .step-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        h4{
+         color: #3C5B6F;
+
+        }
+
+        /* Styling untuk tabel */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            opacity: 0;
+            transform: translateY(50px); /* Awal animasi di luar layar */
+            transition: all 1s ease-out;
+        }
+
+        th, td {
+            border: 1px solid#3C5B6F;
+            ;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #cfb58e;
+            color: #3C5B6F;
+        }
+
+        td {
+            background-color: #DFD0B8;
+            color: #3C5B6F;
+        }
+
+        /* Responsive untuk layar kecil (mobile) */
+        @media (max-width: 768px) {
+            .step-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2 id="title">Tutorial Membuat Tabel HTML</h2>
+
+    <div class="container">
+        <h3>Di bawah ini adalah cara sederhana untuk membuat tabel di HTML:</h3>
+    <div class="steps-container">
+        <div class="step-box animate">
+            <p><strong>&lt;table&gt;</strong> - Elemen utama untuk membuat tabel.</p>
+        </div>
+        <div class="step-box animate">
+            <p><strong>&lt;tr&gt;</strong> - Membuat baris dalam tabel.</p>
+        </div>
+        <div class="step-box animate">
+            <p><strong>&lt;th&gt;</strong> - Membuat header (judul kolom).</p>
+        </div>
+        <div class="step-box animate">
+            <p><strong>&lt;td&gt;</strong> - Membuat sel atau kolom untuk data.</p>
+        </div>
+    </div>
+    </div>
+
+    </br>
+
+    <h4> Contoh Tabel:</h4>
+    <!-- Membuat tabel sederhana -->
+    <table class="animate" id="tabel">
+        <thead>
+            <tr>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>IP Semester 1</th>
+                <th>IP Semester 2</th>
+                <th>IP Semester 3</th>
+                <th>IP Semester 4</th>
+                <th>IP Semester 5</th>
+                <th>IP Semester 6</th>
+                <th>IP Semester 7</th>
+                <th>IP Semester 8</th>
+                <th>Jurusan</th>
+                <th>Fakultas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>202110012</td>
+                <td>Zaskia</td>
+                <td>3.5</td>
+                <td>3.6</td>
+                <td>3.7</td>
+                <td>3.8</td>
+                <td>3.9</td>
+                <td>4.0</td>
+                <td>4.0</td>
+                <td>4.0</td>
+                <td>Informatika</td>
+                <td>Fakultas Teknik</td>
+            </tr>
+            <tr>
+                <td>202110013</td>
+                <td>Rendra</td>
+                <td>3.3</td>
+                <td>3.3</td>
+                <td>3.4</td>
+                <td>3.5</td>
+                <td>3.6</td>
+                <td>3.7</td>
+                <td>3.8</td>
+                <td>3.9</td>
+                <td>Teknik Sipil</td>
+                <td>Fakultas Teknik</td>
+            </tr>
+            <tr>
+                <td>202110014</td>
+                <td>Kai</td>
+                <td>3.2</td>
+                <td>3.2</td>
+                <td>3.3</td>
+                <td>3.4</td>
+                <td>3.5</td>
+                <td>3.6</td>
+                <td>3.7</td>
+                <td>3.8</td>
+                <td>Arsitektur</td>
+                <td>Fakultas Teknik</td>
+            </tr>
+        </tbody>
+    </table>
+
+    </br>
+
+    <div class="bottom-container">
+        <h3>Penjelasan CSS untuk tabel</h3>
+    <div class="steps-container">
+        <div class="step-box animate">
+            <p><strong>border-collapse:</strong> Menghilangkan spasi antar garis sel agar lebih rapi.</p>
+        </div>
+        <div class="step-box animate">
+            <p><strong>background-color:</strong> Memberi warna latar belakang untuk membedakan bagian header dan isi tabel.</p>
+        </div>
+        <div class="step-box animate">
+            <p><strong>padding:</strong> Memberikan ruang di dalam sel agar teks tidak terlalu menempel dengan border.</p>
+        </div>
+        <div class="step-box animate">
+            <p><strong>text-align:</strong> Mengatur posisi teks, misalnya <em>center</em> agar semua isi tabel berada di tengah.</p>
+        </div>
+    </div>
+    </div>
+
+
+    <script>
+        // Fungsi untuk memeriksa apakah elemen terlihat di viewport
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+    
+        // Tambahkan kelas 'visible' jika elemen masuk viewport
+        function checkVisibleElements() {
+            const elements = document.querySelectorAll('.animate');
+            elements.forEach(el => {
+                if (isElementInViewport(el)) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+    
+        // Fungsi yang dijalankan saat halaman di-scroll
+        function onScroll() {
+            requestAnimationFrame(checkVisibleElements);
+        }
+    
+        // Event listener untuk scroll
+        window.addEventListener('scroll', onScroll);
+    
+        // Fungsi dijalankan setelah halaman selesai dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tampilkan judul dengan animasi
+            const title = document.getElementById('title');
+            title.classList.add('visible');
+    
+            // Periksa elemen lain yang mungkin sudah terlihat
+            checkVisibleElements();
+        });
+    </script> 
+        
+</body>
+</html>
