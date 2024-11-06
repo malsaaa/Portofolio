@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Tuttorial</title>
+</head>
+<style>
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* ----- VARIABLES ----- */
+:root {
+    /* Background and Primary Colors */
+    --body-color: #dfd0b8;
+    --color-white: #cfb58e;
+
+    /* Text Colors */
+    --text-color-second: #3C5B6F;
+    --text-color-third: #153448;
+
+    /* Primary Button & Link Colors */
+    --first-color: #153448;
+    --first-color-hover: #3C5B6F;
+
+    /* Accent Colors */
+    --second-color: #153448;
+    --third-color: #153448;
+
+    /* Shadow and Hover Effects */
+    --first-shadow-color: rgba(182, 136, 50, 0.719);
+    --second-shadow-color: rgba(0, 0, 0, 0.7);
+}
+
+/* ----- BASE ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ----- SMOOTH SCROLL ----- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ----- CHANGE THE SCROLL BAR DESIGN ----- */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 25px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 30px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}
+
+/* ---##-- REUSABLE CSS --##--- */
+
+/* ----- GLOBAL BUTTON DESIGN ----- */
+.btn {
+    font-weight: 500;
+    padding: 12px 20px;
+    background: #cfb58e;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.btn > i {
+    margin-left: 10px;
+}
+.btn:hover {
+    background: var(--second-color);
+    color: var(--color-white);
+}
+
+/* ----- GLOBAL ICONS DESIGN ----- */
+i {
+    font-size: 16px;
+}
+
+/* ------- BASE -------- */
+body {
+    background: var(--body-color);
+}
+
+/* ----- HEADER CONTAINER ----- */
+.container {
+width: 100%;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 100;
+}
+
+/* ----- NAVIGATION BAR ----- */
+nav {
+position: fixed;
+display: flex;
+align-items: center; /* Menjaga konten tetap di tengah secara vertikal */
+justify-content: space-between;
+width: 100%;
+height: 90px;
+background: var(--body-color);
+padding-inline: 9vw;
+transition: 0.3s;
+z-index: 100;
+}
+
+.nav-logo {
+display: flex;
+align-items: center;
+font-size: 30px;
+font-weight: 600;
+color: var(--text-color-third);
+gap: 5px;
+}
+
+/* Tambahkan Flexbox ke nav-menu untuk pusatkan daftar menu */
+.nav-menu {
+display: flex;
+justify-content: center; /* Menempatkan menu di tengah */
+flex-grow: 1; /* Agar mengambil ruang yang tersisa */
+}
+
+.nav_menu_list {
+display: flex;
+gap: 20px; /* Menambahkan jarak antar item */
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+/* Mengatur tampilan tautan menu */
+.nav-link {
+text-decoration: none;
+color: var(--text-color-second);
+font-weight: 500;
+padding-inline: 15px;
+}
+.nav-logo {
+display: flex;
+align-items: center;
+font-size: 30px;
+font-weight: 600;
+color: var(--text-color-third);
+gap: 5px;
+}
+
+.nav-name {
+font-size: 30px;
+font-weight: 600;
+color: var(--text-color-third);
+}
+
+.nav-logo span {
+font-size: 40px;
+color: var(--text-color-second);
+}
+
+.nav-menu,
+.nav_menu_list {
+display: flex;
+}
+
+.nav-menu .nav_list {
+list-style: none;
+position:relative;
+justify-content: space-between;
+
+}
+
+.nav-link {
+text-decoration: none;
+color: var(--text-color-second);
+font-weight: 500;
+padding-inline: 15px;
+margin-inline: 20px;
+}
+
+.nav-button{
+font-weight: 500;
+padding: 12px 20px;
+background: #cfb58e;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+transition: 0.4s;
+}
+.active-link {
+    position: relative;
+    color: var(--first-color);
+    transition: 0.3;
+}
+.active-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -15px;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    background: var(--first-color);
+    border-radius: 50%;
+}
+
+.wrapper {
+        padding: 20px;
+        width: 90%;
+        max-width: 1200px;
+    }
+    section{
+        padding-top: 100px;
+    }
+
+    /* ----- TABLE STYLES ----- */
+    table {
+        width: 114%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        border: 1px solid var(#3C5B6F);
+        text-align: center;
+        color: var(--text-color);
+    }
+
+    th {
+        background-color:  #cfb58e;
+        font-weight: 600;
+        color: #3C5B6F;
+    }
+
+    td {
+        background-color: var(--body-color);
+        color: #3C5B6F;
+    }
+
+    /* Alternating row colors */
+    tbody tr:nth-child(even) td {
+        background-color: #f4e7ce;
+    }
+
+    tbody tr:nth-child(odd) td {
+        background-color: var(--body-color);
+    }
+
+            /* Container untuk keseluruhan langkah */
+    .steps-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-left: 10%;
+}
+
+.step-box {
+    background-color: #cfb58e;
+    border-radius: 8px;
+    padding: 15px;
+    width: calc(50% - 20px); /* Mengatur lebar tiap step-box agar memenuhi setengah lebar container, dengan memperhitungkan gap */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+        .container h3 {
+            text-align: center;
+            color: #3C5B6F;
+            margin-bottom: 20px;
+        
+        }
+
+        .step-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        
+        .bottom-container h3{
+             color: #3C5B6F;
+                text-align: center;
+                margin-bottom: 20px;
+                align-items: center;
+                padding-left: 7%;
+        }
+
+        /* ----- MEDIA QUERY == 1024px / RESPONSIVE ----- */
+       @media only screen and (max-width: 1024px) {
+        .featured-text {
+            padding: 0;
+        }
+        .image,
+        .image img {
+            width: 320px;
+            height: 320px;
+        }
+        }
+
+/* ----- MEDIA QUERY == 900px / RESPONSIVE ----- */
+        @media only screen and (max-width: 900px) {
+        .nav-button {
+            display: none;
+        }
+        .nav-menu.responsive {
+            left: 0;
+        }
+        .nav-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            width: 100%;
+            min-height: 450px;
+            height: 90vh;
+            transition: 0.3s;
+        }
+        .nav_menu_list {
+            flex-direction: column;
+        }
+        .nav-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+
+            /* Styling untuk Top Header */
+            .top-header h3 {
+                color: #3C5B6F;
+                text-align: center;
+                margin-bottom: 20px;
+                padding-left: 10%;
+                padding-bottom: 5px;
+            }
+
+            /* Container untuk Textarea dan Preview agar sejajar */
+            .code-container {
+                display: flex;
+                gap: 20px;
+                width: 100%;
+                justify-content: center;
+                padding-left: 10%;
+            }
+
+            /* Styling untuk Textarea */
+            .editor {
+                width: 100%;
+                color: #3C5B6F;
+                background-color: #cfb58e;
+                max-width: 500px;
+                height: 200px;
+                padding: 10px;
+                border: 0px solid #ccc;
+                border-radius: 8px;
+                font-family: monospace;
+                resize: vertical; /* Allows resizing vertically only */
+            }
+
+</style>
+<body>
+    <div class="container">
+        <nav id="header">
+            <div class="nav-logo">
+                <p class="nav-name">Tutorial Table</p>
+                <span>.</span>
+            </div>
+            <div class="nav-menu" id="myNavMenu">
+                <ul class="nav_menu_list">
+                    <li class="nav_list"><a href="index.html" class="nav-link active-link">Home</a></li>
+                    <li class="nav_list"><a href="tutorial.html" class="nav-link">Tutorial</a></li>
+                    <li class="nav_list"><a href="index.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <main class="wrapper">
+        <section class="section" id="tutorial">
+                <table class="animate" id="tabel">
+        <thead>
+            <tr>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>IP Semester 1</th>
+                <th>IP Semester 2</th>
+                <th>IP Semester 3</th>
+                <th>IP Semester 4</th>
+                <th>IP Semester 5</th>
+                <th>IP Semester 6</th>
+                <th>IP Semester 7</th>
+                <th>IP Semester 8</th>
+                <th>Jurusan</th>
+                <th>Fakultas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>202110012</td>
+                <td>Zaskia</td>
+                <td>3.5</td>
+                <td>3.6</td>
+                <td>3.7</td>
+                <td>3.8</td>
+                <td>3.9</td>
+                <td>4.0</td>
+                <td>4.0</td>
+                <td>4.0</td>
+                <td>Informatika</td>
+                <td>Fakultas Teknik</td>
+            </tr>
+            <tr>
+                <td>202110013</td>
+                <td>Rendra</td>
+                <td>3.3</td>
+                <td>3.3</td>
+                <td>3.4</td>
+                <td>3.5</td>
+                <td>3.6</td>
+                <td>3.7</td>
+                <td>3.8</td>
+                <td>3.9</td>
+                <td>Teknik Sipil</td>
+                <td>Fakultas Teknik</td>
+            </tr>
+            <tr>
+                <td>202110014</td>
+                <td>Kai</td>
+                <td>3.2</td>
+                <td>3.2</td>
+                <td>3.3</td>
+                <td>3.4</td>
+                <td>3.5</td>
+                <td>3.6</td>
+                <td>3.7</td>
+                <td>3.8</td>
+                <td>Arsitektur</td>
+                <td>Fakultas Teknik</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <div class="bottom-container">
+        <h3>Penjelasan Membuat Tabel:</h3>
+    <div class="steps-container">
+            <div class="step-box animate">
+                <p><strong>&lt;table&gt;</strong> - Elemen utama untuk membuat tabel.</p>
+            </div>
+            <div class="step-box animate">
+                <p><strong>&lt;tr&gt;</strong> - Membuat baris dalam tabel.</p>
+            </div>
+            <div class="step-box animate">
+                <p><strong>&lt;th&gt;</strong> - Membuat header (judul kolom).</p>
+            </div>
+            <div class="step-box animate">
+                <p><strong>&lt;td&gt;</strong> - Membuat sel atau kolom untuk data.</p>
+            </div>
+            <div class="step-box animate">
+            <p><strong>border-collapse:</strong> Menghilangkan spasi antar garis sel agar lebih rapi.</p>
+        </div>
+        <div class="step-box animate">
+            <p><strong>background-color:</strong> Memberi warna latar belakang untuk membedakan bagian header dan isi tabel.</p>
+        </div>
+        <div class="step-box animate">
+            <p><strong>padding:</strong> Memberikan ruang di dalam sel agar teks tidak terlalu menempel dengan border.</p>
+        </div>
+        <div class="step-box animate">
+            <p><strong>text-align:</strong> Mengatur posisi teks, misalnya <em>center</em> agar semua isi tabel berada di tengah.</p>
+        </div>
+    </div>
+    </div>
+        </section>
+        <section class="section" id="tutorials">
+            <div class="top-header">
+                <h3>HTML & CSS Code:</h3>
+            </div>
+        
+            <!-- Card Style untuk Latihan Page Margin -->
+            <!-- Container untuk textarea dan hasil preview -->
+            <div class="code-container">
+                <textarea 
+                    class="editor"
+                    rows="20"
+                    id="contentCode"
+                    placeholder="Masukkan kode HTML dan CSS di sini">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* ----- TABLE STYLES ----- */
+    table {
+        width: 114%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        border: 1px solid var(#3C5B6F);
+        text-align: center;
+        color: var(--text-color);
+    }
+
+    th {
+        background-color:  #cfb58e;
+        font-weight: 600;
+        color: #3C5B6F;
+    }
+
+    td {
+        background-color: var(--body-color);
+        color: #3C5B6F;
+    }
+
+    /* Alternating row colors */
+    tbody tr:nth-child(even) td {
+        background-color: #f4e7ce;
+    }
+
+    tbody tr:nth-child(odd) td {
+        background-color: var(--body-color);
+    }
+
+          </style>
+             </head>
+           <body>
+                        <table class="animate" id="tabel">
+                <thead>
+                    <tr>
+                        <th>NIM</th>
+                        <th>Nama</th>
+                        <th>IP Semester 1</th>
+                        <th>IP Semester 2</th>
+                        <th>IP Semester 3</th>
+                        <th>IP Semester 4</th>
+                        <th>IP Semester 5</th>
+                        <th>IP Semester 6</th>
+                        <th>IP Semester 7</th>
+                        <th>IP Semester 8</th>
+                        <th>Jurusan</th>
+                        <th>Fakultas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>202110012</td>
+                        <td>Zaskia</td>
+                        <td>3.5</td>
+                        <td>3.6</td>
+                        <td>3.7</td>
+                        <td>3.8</td>
+                        <td>3.9</td>
+                        <td>4.0</td>
+                        <td>4.0</td>
+                        <td>4.0</td>
+                        <td>Informatika</td>
+                        <td>Fakultas Teknik</td>
+                    </tr>
+                    <tr>
+                        <td>202110013</td>
+                        <td>Rendra</td>
+                        <td>3.3</td>
+                        <td>3.3</td>
+                        <td>3.4</td>
+                        <td>3.5</td>
+                        <td>3.6</td>
+                        <td>3.7</td>
+                        <td>3.8</td>
+                        <td>3.9</td>
+                        <td>Teknik Sipil</td>
+                        <td>Fakultas Teknik</td>
+                    </tr>
+                    <tr>
+                        <td>202110014</td>
+                        <td>Kai</td>
+                        <td>3.2</td>
+                        <td>3.2</td>
+                        <td>3.3</td>
+                        <td>3.4</td>
+                        <td>3.5</td>
+                        <td>3.6</td>
+                        <td>3.7</td>
+                        <td>3.8</td>
+                        <td>Arsitektur</td>
+                        <td>Fakultas Teknik</td>
+                    </tr>
+                </tbody>
+            </table>        
+        </body>    
+     </html>      
+                </textarea>
+        </section>
+    
+    </main>   
+    
+    
+
+</body>
+</html>

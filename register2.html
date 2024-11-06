@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Register</title>
+</head>
+<style>
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* ----- VARIABLES ----- */
+:root {
+    /* Background and Primary Colors */
+    --body-color: #dfd0b8;
+    --color-white: #cfb58e;
+
+    /* Text Colors */
+    --text-color-second: #3C5B6F;
+    --text-color-third: #153448;
+
+    /* Primary Button & Link Colors */
+    --first-color: #153448;
+    --first-color-hover: #3C5B6F;
+
+    /* Accent Colors */
+    --second-color: #153448;
+    --third-color: #153448;
+
+    /* Shadow and Hover Effects */
+    --first-shadow-color: rgba(182, 136, 50, 0.719);
+    --second-shadow-color: rgba(0, 0, 0, 0.7);
+}
+
+/* ----- BASE ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ----- SMOOTH SCROLL ----- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ----- CHANGE THE SCROLL BAR DESIGN ----- */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 25px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 30px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}
+
+/* ---##-- REUSABLE CSS --##--- */
+
+/* ----- GLOBAL BUTTON DESIGN ----- */
+.btn {
+    font-weight: 500;
+    padding: 12px 20px;
+    background: #cfb58e;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.btn > i {
+    margin-left: 10px;
+}
+.btn:hover {
+    background: var(--second-color);
+    color: var(--color-white);
+}
+
+/* ----- GLOBAL ICONS DESIGN ----- */
+i {
+    font-size: 16px;
+}
+
+/* ------- BASE -------- */
+body {
+    background: var(--body-color);
+}
+
+/* ----- HEADER CONTAINER ----- */
+.container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+/* ----- NAVIGATION BAR ----- */
+nav {
+    position: fixed;
+    display: flex;
+    align-items: center; /* Menjaga konten tetap di tengah secara vertikal */
+    justify-content: space-between;
+    width: 100%;
+    height: 90px;
+    background: var(--body-color);
+    padding-inline: 9vw;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text-color-third);
+    gap: 5px;
+}
+
+/* Tambahkan Flexbox ke nav-menu untuk pusatkan daftar menu */
+.nav-menu {
+    display: flex;
+    justify-content: center; /* Menempatkan menu di tengah */
+    flex-grow: 1; /* Agar mengambil ruang yang tersisa */
+}
+
+.nav_menu_list {
+    display: flex;
+    gap: 20px; /* Menambahkan jarak antar item */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Mengatur tampilan tautan menu */
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color-second);
+    font-weight: 500;
+    padding-inline: 15px;
+}
+.nav-logo {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text-color-third);
+    gap: 5px;
+}
+
+.nav-name {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text-color-third);
+}
+
+.nav-logo span {
+    font-size: 40px;
+    color: var(--text-color-second);
+}
+
+.nav-menu,
+.nav_menu_list {
+    display: flex;
+}
+
+.nav-menu .nav_list {
+    list-style: none;
+    position:relative;
+    justify-content: space-between;
+
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color-second);
+    font-weight: 500;
+    padding-inline: 15px;
+    margin-inline: 20px;
+}
+
+.nav-button{
+    font-weight: 500;
+    padding: 12px 20px;
+    background: #cfb58e;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.active-link {
+    position: relative;
+    color: var(--first-color);
+    transition: 0.3;
+}
+.active-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -15px;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    background: var(--first-color);
+    border-radius: 50%;
+}
+
+ /* ----- WRAPPER DESIGN ----- */
+ .wrapper {
+    padding-inline: 10vw;
+}
+
+            /* ----- LOGIN FORM STYLES ----- */
+            .login-form {
+            max-width: 400%;
+            width: 50%; /* Membuat lebar kotak 100% dari kontainernya */
+          min-width: 400px;
+            margin: 80px auto;
+            padding: 20px;
+            background: #cfb58e;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 18px;
+        }
+        .login-form h2 {
+            color: var(--text-color-third);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            color: var(--text-color-third);
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+          /* CSS untuk langkah-langkah tutorial */
+            .tutorial-section {
+            width: 100%;
+            max-width: 1800px;
+            margin: 30px auto;
+            padding: 20px;
+            color: #3C5B6F;
+        }
+
+        .tutorial-section h3 {
+            text-align: center;
+            color: #3C5B6F;
+            margin-bottom: 20px;
+        
+        }
+
+        .tutorial-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+       
+
+        }
+
+        .tutorial-box {
+            background-color: #cfb58e;
+            width: 100%; /* Membuat lebar kotak 100% dari kontainernya */
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1500px;
+
+
+        }
+
+        .tutorial-box code {
+            background-color: #dfd0b8;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .tutorial-box ul {
+            margin-left: 20px;
+        }
+
+        .tutorial-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+                
+                    /* Styling untuk Section Tutorial */
+                    .section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 5px;
+                padding: 20px;
+                border-radius: 10px;
+                max-width: 1700px;
+                margin: auto; /* Center the section on the page */
+            }
+
+            /* Styling untuk Top Header */
+            .top-header h3 {
+                color: #3C5B6F;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            /* Container untuk Textarea dan Preview agar sejajar */
+            .code-container {
+                display: flex;
+                gap: 20px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Styling untuk Textarea */
+            .editor {
+                width: 100%;
+                color: #3C5B6F;
+                background-color: #cfb58e;
+                max-width: 500px;
+                height: 200px;
+                padding: 10px;
+                border: 0px solid #ccc;
+                border-radius: 8px;
+                font-family: monospace;
+                resize: vertical; /* Allows resizing vertically only */
+            }
+
+
+        
+        /* ----- MEDIA QUERY == 900px / RESPONSIVE ----- */
+        @media only screen and (max-width: 900px) {
+        .nav-button {
+            display: none;
+        }
+        .nav-menu.responsive {
+            left: 0;
+        }
+        .nav-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            width: 100%;
+            min-height: 450px;
+            height: 90vh;
+            transition: 0.3s;
+        }
+        .nav_menu_list {
+            flex-direction: column;
+        }
+        .nav-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+        /* ----- MEDIA QUERY == 1024px / RESPONSIVE ----- */
+        @media only screen and (max-width: 1024px) {
+        .featured-text {
+            padding: 0;
+        }
+        .image,
+        .image img {
+            width: 320px;
+            height: 320px;
+        }
+        }
+
+
+
+
+</style>
+<body>
+    <div class="container">
+        <nav id="header">
+            <div class="nav-logo">
+                <p class="nav-name">Tutorial Form</p>
+                <span>.</span>
+            </div>
+            <div class="nav-menu" id="myNavMenu">
+                <ul class="nav_menu_list">
+                    <li class="nav_list"><a href="index.html" class="nav-link active-link">Home</a></li>
+                    <li class="nav_list"><a href="tutorial.html" class="nav-link">Tutorial</a></li>
+                    <li class="nav_list"><a href="index.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+        <main class="wrapper">
+            <section class="section" id="tutorials">
+                <div class="top-header">
+                  <h1>Form Tutorial</h1>
+                </div>
+
+         <!-- Login Form Section -->
+        <div class="login-form">
+            <h2>Register</h2>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Password:</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn" onclick="window.location.href='form2.html'">Login</button>
+                    <button type="button" class="btn" onclick="window.location.href='register2.html'">Register</button>
+                </div>
+            </form>
+        </div>
+
+   <!-- Section untuk tutorial pembuatan form -->
+    <div class="tutorial-section">
+        <h3>Penjelasan Membuat Form Register HTML: </h3>
+        <div class="tutorial-container">
+            <div class="tutorial-box">
+                <strong>&lt;form&gt;</strong>
+                <p>Tag ini digunakan untuk membuat form HTML. Semua elemen input di dalam form berada di antara tag <code>&lt;form&gt;</code> dan <code>&lt;/form&gt;</code>. Form ini memiliki atribut:</p>
+                <ul>
+                    <li><strong>action</strong>: Menentukan URL yang akan menerima data form.</li>
+                    <li><strong>method</strong>: Metode pengiriman data, seperti <code>POST</code> atau <code>GET</code>.</li>
+                </ul>
+            </div>
+
+            <div class="tutorial-box">
+                <strong>&lt;input type="text"&gt;</strong>
+                <p>Tag ini digunakan untuk membuat input teks, seperti untuk username. Atribut:</p>
+                <ul>
+                    <li><strong>type="text"</strong>: Menentukan inputan berupa teks biasa.</li>
+                    <li><strong>required</strong>: Membuat input ini wajib diisi.</li>
+                </ul>
+            </div>
+
+            <div class="tutorial-box">
+                <strong>&lt;input type="email"&gt;</strong>
+                <p>Tag ini digunakan untuk menerima alamat email. Browser akan memvalidasi apakah format email yang dimasukkan sudah benar.</p>
+            </div>
+
+            <div class="tutorial-box">
+                <strong>&lt;input type="password"&gt;</strong>
+                <p>Tag ini digunakan untuk menerima kata sandi. Karakter yang dimasukkan akan disembunyikan.</p>
+            </div>
+
+            <div class="tutorial-box">
+                <strong>&lt;input type="submit"&gt;</strong>
+                <p>Tag ini digunakan untuk membuat tombol pengiriman form. Saat diklik, form akan dikirimkan.</p>
+            </div>
+
+            <div class="tutorial-box">
+                <strong>&lt;a&gt;</strong>
+                <p>Tag ini digunakan untuk membuat hyperlink. Pada contoh ini, tombol "Login" menggunakan tag <code>&lt;a&gt;</code> yang merujuk ke halaman lain.</p>
+            </div>
+        </div>
+    </div>
+        </main>
+        <section class="section" id="tutorials">
+            <div class="top-header">
+                <h3>HTML & CSS Code:</h3>
+            </div>
+        
+            <!-- Card Style untuk Latihan Page Margin -->
+            <!-- Container untuk textarea dan hasil preview -->
+            <div class="code-container">
+                <textarea 
+                    class="editor"
+                    rows="20"
+                    id="contentCode"
+                    placeholder="Masukkan kode HTML dan CSS di sini">
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <style>
+         /* ----- CONTENT STYLES ----- */
+         .geo-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                padding-top: 5px; /* To avoid overlap with fixed header */
+                padding-top: 5px;
+            }
+    
+            /* Container for geolocation content */
+            .geo-container {
+                text-align: center;
+                background-color: #cfb58e;
+                border-radius: 15px;
+                padding: 40px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                max-width: 500px;
+                width: 100%;
+                margin-top: 20px;
+            }
+    
+            h1 {
+                font-size: 24px;
+                color: #333;
+                margin-bottom: 20px;
+            }
+    
+            button {
+                background-color: #dfd0b8;
+                color: #3C5B6F;
+                border: none;
+                padding: 15px 30px;
+                border-radius: 25px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+    
+            #location {
+                margin-top: 20px;
+                padding: 20px;
+                border-radius: 15px;
+                background-color: #dfd0b8;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+                display: none;
+            }
+    
+            
+          button:hover {
+            background-color: #dfd0b8;
+          }
+    
+            h3 {
+                margin-bottom: 10px;
+                font-size: 20px;
+                color: #3C5B6F;
+            }
+    
+            p {
+                font-size: 16px;
+                color: #555;
+                margin: 5px 0;
+            }
+    
+            button .getLocation{
+                background-color: #dfd0b8;
+            }
+                    
+          </style>
+             </head>
+           <body>
+                  <!-- --------------- GEOLOCATION CONTENT --------------- -->
+          <div class="geo-wrapper">
+            <div class="geo-container">
+                <h1>Get User Location with Geolocation API</h1> 
+                <button onclick="getLocation()">Get Location</button> 
+                <div id="location">
+                    <h3>Your Location:</h3>
+                    <p>Latitude: <span id="latitude"></span></p>
+                    <p>Longitude: <span id="longitude"></span></p>
+                    <p>Accuracy: <span id="accuracy"></span> meters</p>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            // Function to get user location
+            function getLocation() {
+                const locationBox = document.getElementById("location");
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition, showError);
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
+    
+                // Add loading effect to the button
+                const button = document.querySelector("button");
+                button.innerHTML = "Getting Location...";
+                button.disabled = true;
+                button.style.backgroundColor = "#dfd0b8";
+            }
+    
+            // Function to display position
+            function showPosition(position) {
+                document.getElementById("latitude").innerHTML = position.coords.latitude;
+                document.getElementById("longitude").innerHTML = position.coords.longitude;
+                document.getElementById("accuracy").innerHTML = position.coords.accuracy + " meters";
+    
+                // Show the location div
+                const locationBox = document.getElementById("location");
+                locationBox.style.display = "block";
+    
+                // Revert button state
+                const button = document.querySelector("button");
+                button.innerHTML = "Get Location";
+                button.disabled = false;
+                button.style.backgroundColor = "#dfd0b8";
+            }
+    
+            // Function to handle errors
+            function showError(error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        alert("User denied the request for Geolocation.");
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        alert("Location information is unavailable.");
+                        break;
+                    case error.TIMEOUT:
+                        alert("The request to get user location timed out.");
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        alert("An unknown error occurred.");
+                        break;
+                }
+    
+                // Revert button state
+                const button = document.querySelector("button");
+                button.innerHTML = "Get Location";
+                button.disabled = false;
+                button.style.backgroundColor = "#dfd0b8";
+            }
+    
+        </script>
+           </body>    
+    </html>      
+                </textarea>
+        </section>
+    
+    
+</body>
+</html>

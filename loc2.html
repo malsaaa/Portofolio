@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial HTML5-API</title>
+</head>
+    <style>
+                        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* ----- VARIABLES ----- */
+:root {
+    /* Background and Primary Colors */
+    --body-color: #dfd0b8;
+    --color-white: #cfb58e;
+
+    /* Text Colors */
+    --text-color-second: #3C5B6F;
+    --text-color-third: #153448;
+
+    /* Primary Button & Link Colors */
+    --first-color: #153448;
+    --first-color-hover: #3C5B6F;
+
+    /* Accent Colors */
+    --second-color: #153448;
+    --third-color: #153448;
+
+    /* Shadow and Hover Effects */
+    --first-shadow-color: rgba(182, 136, 50, 0.719);
+    --second-shadow-color: rgba(0, 0, 0, 0.7);
+}
+
+/* ----- BASE ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: var(--body-color);
+}
+
+/* ----- HEADER CONTAINER ----- */
+.container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+/* ----- NAVIGATION BAR ----- */
+nav {
+    position: fixed;
+    display: flex;
+    align-items: center; /* Menjaga konten tetap di tengah secara vertikal */
+    justify-content: space-between;
+    width: 100%;
+    height: 90px;
+    background: var(--body-color);
+    padding-inline: 9vw;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text-color-third);
+    gap: 5px;
+}
+
+/* Tambahkan Flexbox ke nav-menu untuk pusatkan daftar menu */
+.nav-menu {
+    display: flex;
+    justify-content: center; /* Menempatkan menu di tengah */
+    flex-grow: 1; /* Agar mengambil ruang yang tersisa */
+}
+
+.nav_menu_list {
+    display: flex;
+    gap: 20px; /* Menambahkan jarak antar item */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Mengatur tampilan tautan menu */
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color-second);
+    font-weight: 500;
+    padding-inline: 15px;
+}
+.nav-logo {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text-color-third);
+    gap: 5px;
+}
+
+.nav-name {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text-color-third);
+}
+
+.nav-logo span {
+    font-size: 40px;
+    color: var(--text-color-second);
+}
+
+.nav-menu,
+.nav_menu_list {
+    display: flex;
+}
+
+.nav-menu .nav_list {
+    list-style: none;
+    position:relative;
+    justify-content: space-between;
+
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color-second);
+    font-weight: 500;
+    padding-inline: 15px;
+    margin-inline: 20px;
+}
+
+.nav-btn {
+    font-weight: 500;
+    padding: 12px 20px;
+    background: #cfb58e;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+
+
+     /* ----- CONTENT STYLES ----- */
+     .geo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding-top: 5px; /* To avoid overlap with fixed header */
+            padding-top: 5px;
+        }
+
+        /* Container for geolocation content */
+        .geo-container {
+            text-align: center;
+            background-color: #cfb58e;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #dfd0b8;
+            color: #3C5B6F;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #location {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #dfd0b8;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            display: none;
+        }
+
+        
+      button:hover {
+        background-color: #dfd0b8;
+      }
+
+        h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #3C5B6F;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        button .getLocation{
+            background-color: #dfd0b8;
+        }
+
+        .wrapper {
+            padding-inline: 10vw;
+            margin-top: 0%; /* Untuk memberi jarak dari header tetap */
+        }
+        
+    
+        /* Kotak deskripsi langkah */
+        .step-box {
+            background-color: #cfb58e;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px; /* jarak antar kotak */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            width: 100%; /* Membuat lebar kotak 100% dari kontainernya */
+          min-width: 1100px; /* Atur lebar minimum untuk memastikan kotak lebih lebar */
+          max-width: 300%; /* Atur lebar maksimum agar kotak tidak terlalu lebar */
+        }
+
+        /* Gaya setiap langkah */
+        .step-box h4 {
+            font-size: 15px;
+            color: #3C5B6F;
+            margin-bottom: 5px;
+        }
+
+        .step-box p {
+            font-size: 16px;
+            color: #3C5B6F;
+            margin: 0;
+        }
+
+        section h2.explanation-title{
+            font-size: 20px;
+            font-weight: 600;
+            color: #3C5B6F;
+            text-align: center;
+        }
+
+        .step-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        
+                    /* Styling untuk Section Tutorial */
+                    .section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+                padding: 20px;
+                border-radius: 10px;
+                max-width: 800px;
+                margin: auto; /* Center the section on the page */
+            }
+
+            /* Styling untuk Top Header */
+            .top-header h3 {
+                color: #3C5B6F;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            /* Container untuk Textarea dan Preview agar sejajar */
+            .code-container {
+                display: flex;
+                gap: 20px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Styling untuk Textarea */
+            .editor {
+                width: 100%;
+                color: #3C5B6F;
+                background-color: #cfb58e;
+                max-width: 500px;
+                height: 200px;
+                padding: 10px;
+                border: 0px solid #ccc;
+                border-radius: 8px;
+                font-family: monospace;
+                resize: vertical; /* Allows resizing vertically only */
+            }
+
+
+       
+
+            /* ----- MEDIA QUERY == 1024px / RESPONSIVE ----- */
+            @media only screen and (max-width: 1024px) {
+        .featured-text {
+            padding: 0;
+        }
+        .image,
+        .image img {
+            width: 320px;
+            height: 320px;
+        }
+        }
+
+/* ----- MEDIA QUERY == 900px / RESPONSIVE ----- */
+        @media only screen and (max-width: 900px) {
+        .nav-button {
+            display: none;
+        }
+        .nav-menu.responsive {
+            left: 0;
+        }
+        .nav-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            width: 100%;
+            min-height: 450px;
+            height: 90vh;
+            transition: 0.3s;
+        }
+        .nav_menu_list {
+            flex-direction: column;
+        }
+        .nav-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    </style>
+<body>
+            <!-- --------------- HEADER --------------- -->
+    <div class="container">
+        <nav id="header">
+            <div class="nav-logo">
+                <p class="nav-name">Tutorial Get Location</p>
+                <span>.</span>
+            </div>
+            <div class="nav-menu" id="myNavMenu">
+                <ul class="nav_menu_list">
+                    <li class="nav_list"><a href="index.html" class="nav-link active-link">Home</a></li>
+                    <li class="nav_list"><a href="tutorial.html" class="nav-link">Tutorial</a></li>
+                    <li class="nav_list"><a href="index.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+      <!-- --------------- GEOLOCATION CONTENT --------------- -->
+      <div class="geo-wrapper">
+        <div class="geo-container">
+            <h1>Get User Location with Geolocation API</h1> 
+            <button onclick="getLocation()">Get Location</button> 
+            <div id="location">
+                <h3>Your Location:</h3>
+                <p>Latitude: <span id="latitude"></span></p>
+                <p>Longitude: <span id="longitude"></span></p>
+                <p>Accuracy: <span id="accuracy"></span> meters</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="wrapper">
+        <section class="section" id="getLocation">
+            <div class="top-header">
+            </div>
+    <h2 class="explanation-title">Penjelasan Membuat Get Location:</h2>
+        <!-- Deskripsi Langkah-langkah -->
+        <div class="step-box">
+            <h4>1. Struktur HTML</h4>
+            <p>Buat file <strong>index.html</strong>, tambahkan judul, dan buat elemen <code>&lt;div&gt;</code> sebagai wadah utama.</p>
+        </div>
+        <div class="step-box">
+            <h4>2. Tombol "Get Location"</h4>
+            <p>Tambahkan tombol <code>&lt;button&gt;</code> dengan atribut <code>onclick="getLocation()"</code> untuk memicu fungsi JavaScript saat diklik.</p>
+        </div>
+        <div class="step-box">
+            <h4>3. Wadah Lokasi</h4>
+            <p>Tambahkan <code>&lt;div id="location"&gt;</code> untuk menampilkan latitude, longitude, dan akurasi dari posisi pengguna.</p>
+        </div>
+        <div class="step-box">
+            <h4>4. CSS Tampilan</h4>
+            <p>Buat file <strong>style.css</strong> atau gunakan <code>&lt;style&gt;</code> untuk memperindah tampilan tombol dan area lokasi.</p>
+        </div>
+        <div class="step-box">
+            <h4>5. JavaScript Geolocation</h4>
+            <p>Buat fungsi <code>getLocation()</code> untuk memeriksa dan mengambil lokasi pengguna menggunakan Geolocation API, serta menampilkan hasil atau pesan error.</p>
+        </div>
+    </div>
+        </section>
+    </main>
+
+    <section class="section" id="tutorials">
+        <div class="top-header">
+            <h3>HTML & CSS Code:</h3>
+        </div>
+    
+        <!-- Card Style untuk Latihan Page Margin -->
+        <!-- Container untuk textarea dan hasil preview -->
+        <div class="code-container">
+            <textarea 
+                class="editor"
+                rows="20"
+                id="contentCode"
+                placeholder="Masukkan kode HTML dan CSS di sini">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+     /* ----- CONTENT STYLES ----- */
+     .geo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding-top: 5px; /* To avoid overlap with fixed header */
+            padding-top: 5px;
+        }
+
+        /* Container for geolocation content */
+        .geo-container {
+            text-align: center;
+            background-color: #cfb58e;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #dfd0b8;
+            color: #3C5B6F;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #location {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #dfd0b8;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            display: none;
+        }
+
+        
+      button:hover {
+        background-color: #dfd0b8;
+      }
+
+        h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #3C5B6F;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        button .getLocation{
+            background-color: #dfd0b8;
+        }
+                
+      </style>
+         </head>
+       <body>
+              <!-- --------------- GEOLOCATION CONTENT --------------- -->
+      <div class="geo-wrapper">
+        <div class="geo-container">
+            <h1>Get User Location with Geolocation API</h1> 
+            <button onclick="getLocation()">Get Location</button> 
+            <div id="location">
+                <h3>Your Location:</h3>
+                <p>Latitude: <span id="latitude"></span></p>
+                <p>Longitude: <span id="longitude"></span></p>
+                <p>Accuracy: <span id="accuracy"></span> meters</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to get user location
+        function getLocation() {
+            const locationBox = document.getElementById("location");
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+
+            // Add loading effect to the button
+            const button = document.querySelector("button");
+            button.innerHTML = "Getting Location...";
+            button.disabled = true;
+            button.style.backgroundColor = "#dfd0b8";
+        }
+
+        // Function to display position
+        function showPosition(position) {
+            document.getElementById("latitude").innerHTML = position.coords.latitude;
+            document.getElementById("longitude").innerHTML = position.coords.longitude;
+            document.getElementById("accuracy").innerHTML = position.coords.accuracy + " meters";
+
+            // Show the location div
+            const locationBox = document.getElementById("location");
+            locationBox.style.display = "block";
+
+            // Revert button state
+            const button = document.querySelector("button");
+            button.innerHTML = "Get Location";
+            button.disabled = false;
+            button.style.backgroundColor = "#dfd0b8";
+        }
+
+        // Function to handle errors
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+
+            // Revert button state
+            const button = document.querySelector("button");
+            button.innerHTML = "Get Location";
+            button.disabled = false;
+            button.style.backgroundColor = "#dfd0b8";
+        }
+
+    </script>
+       </body>    
+</html>      
+            </textarea>
+    </section>
+
+   
+    
+
+    <script>
+        // Function to get user location
+        function getLocation() {
+            const locationBox = document.getElementById("location");
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+
+            // Add loading effect to the button
+            const button = document.querySelector("button");
+            button.innerHTML = "Getting Location...";
+            button.disabled = true;
+            button.style.backgroundColor = "#dfd0b8";
+        }
+
+        // Function to display position
+        function showPosition(position) {
+            document.getElementById("latitude").innerHTML = position.coords.latitude;
+            document.getElementById("longitude").innerHTML = position.coords.longitude;
+            document.getElementById("accuracy").innerHTML = position.coords.accuracy + " meters";
+
+            // Show the location div
+            const locationBox = document.getElementById("location");
+            locationBox.style.display = "block";
+
+            // Revert button state
+            const button = document.querySelector("button");
+            button.innerHTML = "Get Location";
+            button.disabled = false;
+            button.style.backgroundColor = "#dfd0b8";
+        }
+
+        // Function to handle errors
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+
+            // Revert button state
+            const button = document.querySelector("button");
+            button.innerHTML = "Get Location";
+            button.disabled = false;
+            button.style.backgroundColor = "#dfd0b8";
+        }
+
+    </script>
+
+    
+
+</body>
+</html>

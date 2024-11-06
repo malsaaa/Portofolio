@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy Tutorial</title>
+</head>
+    <style>
+                @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* ----- VARIABLES ----- */
+:root {
+    /* Background and Primary Colors */
+    --body-color: #dfd0b8;
+    --color-white: #cfb58e;
+
+    /* Text Colors */
+    --text-color-second: #3C5B6F;
+    --text-color-third: #153448;
+
+    /* Primary Button & Link Colors */
+    --first-color: #153448;
+    --first-color-hover: #3C5B6F;
+
+    /* Accent Colors */
+    --second-color: #153448;
+    --third-color: #153448;
+
+    /* Shadow and Hover Effects */
+    --first-shadow-color: rgba(182, 136, 50, 0.719);
+    --second-shadow-color: rgba(0, 0, 0, 0.7);
+}
+
+/* ----- BASE ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: var(--body-color);
+}
+
+ /* ----- HEADER CONTAINER ----- */
+ .container {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+ }
+
+/* ----- NAVIGATION BAR ----- */
+nav {
+    position: fixed;
+    display: flex;
+    align-items: center; /* Menjaga konten tetap di tengah secara vertikal */
+    justify-content: space-between;
+    width: 100%;
+    height: 90px;
+    background: var(--body-color);
+    padding-inline: 9vw;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text-color-third);
+    gap: 5px;
+}
+
+/* Tambahkan Flexbox ke nav-menu untuk pusatkan daftar menu */
+.nav-menu {
+    display: flex;
+    justify-content: center; /* Menempatkan menu di tengah */
+    flex-grow: 1; /* Agar mengambil ruang yang tersisa */
+}
+
+.nav_menu_list {
+    display: flex;
+    gap: 20px; /* Menambahkan jarak antar item */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color-second);
+    font-weight: 500;
+    padding-inline: 15px;
+    margin-inline: 20px;
+}
+
+.btn {
+    font-weight: 500;
+    padding: 12px 20px;
+    background: #cfb58e;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+
+ /* ----- WRAPPER DESIGN ----- */
+ .wrapper {
+            padding-inline: 10vw;
+            margin-top: 100px; /* Untuk memberi jarak dari header tetap */
+        }
+
+        main {
+            margin: 20px 0;
+        }
+
+        /* ----- BOX DESIGN ----- */
+        .box {
+            background-color: #cfb58e;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 20px;
+            color: #3C5B6F;
+        }
+
+        .box .li{
+            padding-left: 10px;
+        }
+
+        h3 {
+            color: #3C5B6F;
+        }
+
+
+
+        pre {
+            background-color: #dfd0b8;
+            border: 0px solid #ddd;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+                /* ----- MEDIA QUERY == 1024px / RESPONSIVE ----- */
+      @media only screen and (max-width: 1024px) {
+        .featured-text {
+            padding: 0;
+        }
+        .image,
+        .image img {
+            width: 320px;
+            height: 320px;
+        }
+        }
+
+/* ----- MEDIA QUERY == 900px / RESPONSIVE ----- */
+        @media only screen and (max-width: 900px) {
+        .nav-button {
+            display: none;
+        }
+        .nav-menu.responsive {
+            left: 0;
+        }
+        .nav-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            width: 100%;
+            min-height: 450px;
+            height: 90vh;
+            transition: 0.3s;
+        }
+        .nav_menu_list {
+            flex-direction: column;
+        }
+        .nav-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+
+    </style>
+
+<body>
+        <!-- --------------- HEADER --------------- -->
+    <div class="container">
+        <nav id="header">
+            <div class="nav-logo">
+                <p class="nav-name">Tutorial Deploy</p>
+                <span>.</span>
+            </div>
+            <div class="nav-menu" id="myNavMenu">
+                <ul class="nav_menu_list">
+                    <li class="nav_list"><a href="index.html" class="nav-link active-link">Home</a></li>
+                    <li class="nav_list"><a href="tutorial.html" class="nav-link">Tutorial</a></li>
+                    <li class="nav_list"><a href="index.html" class="nav-link">Contact</a></li>
+                </ul>
+        </nav>
+    </div>
+
+    
+
+    
+        <div class="wrapper">
+            <main>
+                <section id="step1" class="box">
+                    <h3>Langkah 1: Siapkan Proyek Web</h3>
+                    <p>Buat folder di komputer untuk proyek dan buat file HTML, CSS, dan JavaScript sesuai kebutuhan.</p>
+                    <pre><code>my-website/
+    ├── index.html
+    ├── styles.css
+    └── script.js</code></pre>
+                </section>
+    
+                <section id="step2" class="box">
+                    <h3>Langkah 2: Buat Repository di GitHub</h3>
+                    <ol>
+                        <li>Masuk ke Akun GitHub.</li>
+                        <li>Buat Repository Baru dengan nama (misalnya, my-website).</li>
+                        <li>Pilih opsi <strong>Public</strong>.</li>
+                        <li>Klik tombol <strong>Create repository</strong>.</li>
+                    </ol>
+                </section>
+    
+                <section id="step3" class="box">
+                    <h3>Langkah 3: Upload Proyek ke GitHub</h3>
+                    <ol>
+                        <li>Clone Repository:</li>
+                        <pre><code>git clone https://github.com/username/my-website.git</code></pre>
+                        <li>Pindah ke Direktori Proyek:</li>
+                        <pre><code>cd my-website</code></pre>
+                        <li>Copy File Proyek ke Repository.</li>
+                        <li>Lakukan Commit dan Push:</li>
+                        <pre><code>git add .</code></pre>
+                        <pre><code>git commit -m "Initial commit"</code></pre>
+                        <pre><code>git push origin main</code></pre>
+                    </ol>
+                </section>
+    
+                <section id="step4" class="box">
+                    <h3>Langkah 4: Aktifkan GitHub Pages</h3>
+                    <ol>
+                        <li>Buka Pengaturan Repository di GitHub.</li>
+                        <li>Klik pada tab <strong>Settings</strong>.</li>
+                        <li>Scroll ke Bagian <strong>Pages</strong>.</li>
+                        <li>Pilih Sumber untuk GitHub Pages: <strong>main branch</strong>.</li>
+                        <li>Klik <strong>Save</strong>.</li>
+                    </ol>
+                    <p>Dapatkan URL untuk Website:</p>
+                    <pre><code>https://username.github.io/my-website/</code></pre>
+                </section>
+    
+                <section id="step5" class="box">
+                    <h3>Langkah 5: Cek Website</h3>
+                    <p>Buka URL yang telah disediakan dan dapat melihat website yang telah dideploy.</p>
+                </section>
+            </main>
+        </div>
+    
+
+</body>
+</html>
